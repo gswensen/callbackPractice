@@ -23,6 +23,9 @@ and what you should write is the sayHi function that makes the code above work,
 // 1. Write a function called first that returns the first item of the array using a callback function
 
   // Code Here
+  function first(list, cb) {
+    cb(list[0]);
+  }
 
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -34,7 +37,9 @@ first(names, function(firstName){
 
 // 2. Write a function called last which returns the last item of the array using a callback function.
 
-  //Code Here
+function last(arr, cb) {
+  cb(arr[arr.length - 1]);
+} //Code Here
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -45,7 +50,9 @@ last(names, function(lastName){
 // 3. Write a function called multiply that multiplies two numbers using a callback function.
 
   //Code Here
-
+function multiply(num1, num2, cb) {
+  cb(num1 * num2);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -57,6 +64,13 @@ multiply(4, 3, function(answer){
 // If it does, return true using the callback, if not return false.
 
   //Code Here 
+  function contains(arr, name, cb) {
+    if (arr.indexOf(name) < 0) {
+      cb(false); } else {
+        cb(true);
+      }
+    }
+  
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -70,7 +84,14 @@ contains(names, 'Colt', function(result){
 
 // 5. Write a function called uniq that takes the names array and removes all duplicates and returns 
 // the callback function with the array of unique names.
-
+function uniq(arr, cb) {
+newArr = [];
+for (var i = 0; i < arr.length; i++) {
+if (newArr.indexOf(arr[i]) < 0) {
+  newArr.push(arr[i]);
+}
+} cb(newArr);
+}
     //Code Here
 
 uniq(names, function(uniqArr){
@@ -80,8 +101,14 @@ uniq(names, function(uniqArr){
 
 // 6. Write a function called each that takes in an array of names. For each item, use a callback 
 // function to return the indices and item.
+function each(arr, cb) {
+  for (i = 0; i < arr.length; i++)  {
+    cb(arr[i], arr.indexOf(arr[i]));
+  }
+}
 
     //Code Here 
+   
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -93,6 +120,13 @@ each(names, function(item, indice){
 // and returns that user.
 
  //Code Here
+
+  function getUserById(arr, idNum, cb) {
+      for (i = 0; i < arr.length; i++) {
+    if (arr[i].id === idNum) {
+      cb(arr[i]);    }
+      }
+    }
 
 var users = [
   {
